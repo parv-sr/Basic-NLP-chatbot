@@ -3,7 +3,6 @@ from rapidfuzz import process as fzpr
 
 a = 0
 
-#gay
 while a==0:
     user_input = input("Send a message: ")  
     user_input = user_input.lower()
