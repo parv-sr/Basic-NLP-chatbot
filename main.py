@@ -1,5 +1,7 @@
 from rapidfuzz import fuzz as fz
 from rapidfuzz import process as fzpr
+import pandas as pd
+import sklearn as sk
 
 a = 0
 
@@ -66,5 +68,5 @@ while a==0:
     else:
         print(responses["unknown"])
     
-    if user_input in intents["goodbye"]:
+    if out == "goodbye":
         a = 1
