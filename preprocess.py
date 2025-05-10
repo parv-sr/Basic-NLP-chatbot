@@ -1,21 +1,17 @@
 import pandas as pd
-import sklearn as sk
 from sklearn.feature_extraction.text import TfidfVectorizer as vec
 from sklearn.preprocessing import LabelEncoder
 
-df = pd.read_csv(r'C:\F DRIVE\Python\NLP Chatbot\intent_dataset.csv')
-print(df)
+df = pd.read_csv(r'C:\F DRIVE\Python\NLP Chatbot\intent_dataset.csv')   #dataframe loaded
 
+intent_dict = df.groupby('Intent')['Text'].apply(list).to_dict()        #dataframe sorted into a dictionary
 
-
-intent_dict = df.groupby('Intent')['Text'].apply(list).to_dict()
-
-text = df['Text']
-print(text)
+text = df['Text']                                                       #text and labels stored
 labels = df['Intent']
 
 vectorizer = vec()
-X = vectorizer.fit_transform(text)
+X = vectorizer.fit_transform(text)                                      #text is vectorised (converted to integers)
 
-le = LabelEncoder()
+le = LabelEncoder()                                                     #labels are also vectorised
 y = le.fit_transform(labels)
+

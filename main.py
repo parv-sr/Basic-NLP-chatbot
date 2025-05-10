@@ -1,7 +1,6 @@
 from rapidfuzz import fuzz as fz
 from rapidfuzz import process as fzpr
-import pandas as pd
-import sklearn as sk
+import predict
 
 a = 0
 
@@ -32,6 +31,7 @@ while a==0:
         best_score = 0
         best_intent = None
         threshold = 80
+        ml_threshold = 95
         best_match = None
     
         for intent, phrases in intents.items():
@@ -45,8 +45,10 @@ while a==0:
                 best_score = score
                 best_match = match 
 
-        if score >= threshold:
+        if score >= (threshold and ml_threshold):
             return intent
+        elif score >= threshold and score <= ml_threshold:
+            predict.predictIntent(user_input)
         else:
             intent = "unknown"
             return intent
